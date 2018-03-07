@@ -14,12 +14,7 @@ import java.util.List;
 
 public class RssDownloadHelper {
 
-    private List<RSSFeedModel> mFeedModelList;
-    private String mFeedTitle;
-    private String mFeedLink;
-    private String mFeedDescription;
-
-    public List<RSSFeedModel> parseFeed(InputStream inputStream) throws XmlPullParserException, IOException {
+    public static List<RSSFeedModel> parseFeed(InputStream inputStream) throws XmlPullParserException, IOException {
         String title = null;
         String link = null;
         String description = null;
@@ -62,6 +57,7 @@ public class RssDownloadHelper {
 
                 if (name.equalsIgnoreCase("title")) {
                     title = result;
+                    Log.d("TITLE", "TITLE ==> " + title);
                 } else if (name.equalsIgnoreCase("link")) {
                     link = result;
                 } else if (name.equalsIgnoreCase("description")) {
@@ -73,11 +69,11 @@ public class RssDownloadHelper {
                         RSSFeedModel item = new RSSFeedModel(title, link, description);
                         items.add(item);
                     }
-                    else {
-                        mFeedTitle = title;
-                        mFeedLink = link;
-                        mFeedDescription = description;
-                    }
+//                    else {
+//                        mFeedTitle = title;
+//                        mFeedLink = link;
+//                        mFeedDescription = description;
+//                    }
 
                     title = null;
                     link = null;
