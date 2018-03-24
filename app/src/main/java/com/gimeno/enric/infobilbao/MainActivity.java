@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeLayout;
-    private TextView mFeedTitleTextView;
-    private TextView mFeedLinkTextView;
-    private TextView mFeedDescriptionTextView;
 
     private List<RSSFeedModel> mFeedModelList;
     private String mFeedTitle;
@@ -45,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        mFeedTitleTextView = (TextView) findViewById(R.id.feedTitle);
-        mFeedDescriptionTextView = (TextView) findViewById(R.id.feedDescription);
-        mFeedLinkTextView = (TextView) findViewById(R.id.feedLink);
 
         new DownloadFeedTask().execute();
 
@@ -71,10 +65,9 @@ public class MainActivity extends AppCompatActivity {
         mFeedTitle = null;
         mFeedLink = null;
         mFeedDescription = null;
-        mFeedTitleTextView.setText("Feed Title: " + mFeedTitle);
-        mFeedDescriptionTextView.setText("Feed Description: " + mFeedDescription);
-        mFeedLinkTextView.setText("Feed Link: " + mFeedLink);
-        urlLink = "http://www.bilbao.eus/cs/Satellite?language=es&pageid=3000075248&pagename=Bilbaonet/Page/BIO_suscripcionRSS&tipoSus=Avisos&idSec=3000014008";
+
+        // RSS Urls
+        urlLink = getResources().getString(R.string.avisos_de_agua_y_suministros);
         }
 
         @Override
@@ -104,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
         mSwipeLayout.setRefreshing(false);
 
             if (success) {
-                mFeedTitleTextView.setText("Feed Title: " + mFeedTitle);
-                mFeedDescriptionTextView.setText("Feed Description: " + mFeedDescription);
-                mFeedLinkTextView.setText("Feed Link: " + mFeedLink);
                 // Fill RecyclerView
                 mRecyclerView.setAdapter(new RSSFeedListAdapter(mFeedModelList));
             } else {
