@@ -23,7 +23,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DownloadCompleteListener {
 
     private static final String TAG = "MainActivity";
 
@@ -43,67 +43,73 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
-        new DownloadFeedTask().execute();
+        //new DownloadFeedTask().execute();
+        new DownloadFeedTask(this,this).execute(getResources().getString(R.string.avisos_de_agua_y_suministros));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new DownloadFeedTask().execute((Void) null);
-            }
-        });
+//        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                new DownloadFeedTask().execute((Void) null);
+//            }
+//        });
     }
 
-    public class DownloadFeedTask  extends AsyncTask<Void, Void, Boolean> {
+    @Override
+    public void downloadComplete() {
 
-        private String urlLink;
-
-        @Override
-        protected void onPreExecute() {
-        mSwipeLayout.setRefreshing(true);
-        mFeedTitle = null;
-        mFeedLink = null;
-        mFeedDescription = null;
-
-        // RSS Urls
-        urlLink = getResources().getString(R.string.avisos_de_agua_y_suministros);
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-        if (TextUtils.isEmpty(urlLink))
-            return false;
-
-        try {
-            Log.e(TAG, "Do in Background" );
-            if(!urlLink.startsWith("http://") && !urlLink.startsWith("https://"))
-                urlLink = "http://" + urlLink;
-
-            URL url = new URL(urlLink);
-            InputStream inputStream = url.openConnection().getInputStream();
-            mFeedModelList = RssDownloadHelper.parseFeed(inputStream); // Parse the feed
-            return true;
-        } catch (IOException e) {
-            Log.e(TAG, "Error", e);
-        } catch (XmlPullParserException e) {
-            Log.e(TAG, "Error", e);
-        }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean success) {
-        mSwipeLayout.setRefreshing(false);
-
-            if (success) {
-                // Fill RecyclerView
-                mRecyclerView.setAdapter(new RSSFeedListAdapter(mFeedModelList));
-            } else {
-                Toast.makeText(MainActivity.this,
-                        "Enter a valid Rss feed url",
-                        Toast.LENGTH_LONG).show();
-            }
-        }
     }
+
+//    public class DownloadFeedTask  extends AsyncTask<Void, Void, Boolean> {
+//
+//        private String urlLink;
+//
+//        @Override
+//        protected void onPreExecute() {
+//        mSwipeLayout.setRefreshing(true);
+//        mFeedTitle = null;
+//        mFeedLink = null;
+//        mFeedDescription = null;
+//
+//        // RSS Urls
+//        urlLink = getResources().getString(R.string.avisos_de_agua_y_suministros);
+//        }
+//
+//        @Override
+//        protected Boolean doInBackground(Void... voids) {
+//        if (TextUtils.isEmpty(urlLink))
+//            return false;
+//
+//        try {
+//            Log.e(TAG, "Do in Background" );
+//            if(!urlLink.startsWith("http://") && !urlLink.startsWith("https://"))
+//                urlLink = "http://" + urlLink;
+//
+//            URL url = new URL(urlLink);
+//            InputStream inputStream = url.openConnection().getInputStream();
+//            mFeedModelList = RssDownloadHelper.parseFeed(inputStream); // Parse the feed
+//            return true;
+//        } catch (IOException e) {
+//            Log.e(TAG, "Error", e);
+//        } catch (XmlPullParserException e) {
+//            Log.e(TAG, "Error", e);
+//        }
+//            return false;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Boolean success) {
+//        mSwipeLayout.setRefreshing(false);
+//
+//            if (success) {
+//                // Fill RecyclerView
+//                mRecyclerView.setAdapter(new RSSFeedListAdapter(mFeedModelList));
+//            } else {
+//                Toast.makeText(MainActivity.this,
+//                        "Enter a valid Rss feed url",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        }
+//    }
 }
