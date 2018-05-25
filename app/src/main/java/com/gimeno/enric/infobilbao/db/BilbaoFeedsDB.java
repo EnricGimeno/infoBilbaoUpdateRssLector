@@ -1,9 +1,16 @@
 package com.gimeno.enric.infobilbao.db;
 
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class BilbaoFeedsDB {
+    /*
+     * Espacio de nombres (se debe usar el mismo para definir el content provider
+     * en el Manifest
+     */
+    public static final String AUTHORITY = "es.infobilbao.alerts";
+
     //Nombre de la base de datos
     public static final String DB_NAME = "BilbaoAlertsRSS.db";
     //Version de la base de datos
@@ -13,10 +20,15 @@ public class BilbaoFeedsDB {
     private BilbaoFeedsDB(){
 
     }
-    // Definicion de la tabla posts y sus constantes
-    public static  final class Posts implements BaseColumns {
+    // Definicion de la tabla alerts
+    public static  final class Alerts implements BaseColumns {
         // Esta clase no debe ser instanciada la pasamos a privada
-        private Posts(){}
+        private Alerts(){}
+
+        /**
+         *  content:// estilo URL para esta tabla
+         */
+        public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/alerts");
 
         // Ponemos la tabla en orden por defecto
         public static  final String DEFAULT_SORT_ORDER = "_ID DESC";
@@ -27,10 +39,10 @@ public class BilbaoFeedsDB {
 
         public static final String CAMPO_GUID = "guid";
         public static final String CAMPO_TITLE = "title";
-        public static final String CAMPO_PUB_DATE = "pubDateFA";
+        public static final String CAMPO_PUB_DATE = "pubdate";
         public static final String CAMPO_URL_LINK = "link";
         public static final String CAMPO_DESCRIPTION = "description";
-        public static final String CAMPO_CLASE_FEED = "clase_de_rss";
+        //public static final String CAMPO_CLASE_FEED = "clase_de_rss";
     }
 
 }

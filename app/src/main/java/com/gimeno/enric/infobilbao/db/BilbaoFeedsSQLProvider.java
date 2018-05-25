@@ -17,14 +17,13 @@ public class BilbaoFeedsSQLProvider extends SQLiteOpenHelper {
             db = getWritableDatabase();}
 
         //Tabla con sus campos
-        db.execSQL("CREATE TABLE " + BilbaoFeedsDB.Posts.NOMBRE_TABLA + " (" +
-                BilbaoFeedsDB.Posts._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                BilbaoFeedsDB.Posts.CAMPO_GUID + " INTEGER," +
-                BilbaoFeedsDB.Posts.CAMPO_TITLE + " TEXT," +
-                BilbaoFeedsDB.Posts.CAMPO_PUB_DATE + " INTEGER," +
-                BilbaoFeedsDB.Posts.CAMPO_URL_LINK + " TEXT UNIQUE," +
-                BilbaoFeedsDB.Posts.CAMPO_DESCRIPTION + " TEXT," +
-                BilbaoFeedsDB.Posts.CAMPO_CLASE_FEED + " TEXT" +
+        db.execSQL("CREATE TABLE " + BilbaoFeedsDB.Alerts.NOMBRE_TABLA + " (" +
+                BilbaoFeedsDB.Alerts._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                BilbaoFeedsDB.Alerts.CAMPO_GUID + " INTEGER," +
+                BilbaoFeedsDB.Alerts.CAMPO_TITLE + " TEXT," +
+                BilbaoFeedsDB.Alerts.CAMPO_PUB_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                BilbaoFeedsDB.Alerts.CAMPO_URL_LINK + " TEXT UNIQUE," +
+                BilbaoFeedsDB.Alerts.CAMPO_DESCRIPTION + " TEXT" +
                 ")"
         );
     }

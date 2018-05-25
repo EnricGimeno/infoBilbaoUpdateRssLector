@@ -1,6 +1,8 @@
 package com.gimeno.enric.infobilbao;
 
 
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -21,19 +23,15 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DownloadCompleteListener {
 
-    private static final String TAG = "MainActivity";
-
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeLayout;
 
-    private List<RSSFeedModel> mFeedModelList;
-    private String mFeedTitle;
-    private String mFeedLink;
-    private String mFeedDescription;
+    private static Uri uri = Uri.parse("content://es.infobilbao.alerts/alerts/*");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
-        //new DownloadFeedTask().execute();
-        new DownloadFeedTask(this,this).execute(getResources().getString(R.string.avisos_de_agua_y_suministros));
+        new DownloadFeedTask(this,this, mRecyclerView).execute(getResources().getString(R.string.avisos_de_agua_y_suministros));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -58,58 +55,25 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
 
     @Override
     public void downloadComplete() {
+    }
+    private List<RSSFeedModel> getListItemData(Cursor cursor) {
+        List<RSSFeedModel> listViewItems = new ArrayList<RSSFeedModel>();
 
+        if (cursor.moveToFirst()){
+            while(!cursor.isAfterLast()){
+                listViewItems.add( new RSSFeedModel(
+                        cursor.getLong(cursor.getColumnIndex("guid")),
+                        cursor.getString(cursor.getColumnIndex("title")),
+                        cursor.getString(cursor.getColumnIndex("pubdate")),
+                        cursor.getString(cursor.getColumnIndex("link")),
+                        cursor.getString(cursor.getColumnIndex("description"))
+                        ));
+                cursor.moveToNext();
+            }
+        cursor.close();
+        }
+        return  listViewItems;
     }
 
-//    public class DownloadFeedTask  extends AsyncTask<Void, Void, Boolean> {
-//
-//        private String urlLink;
-//
-//        @Override
-//        protected void onPreExecute() {
-//        mSwipeLayout.setRefreshing(true);
-//        mFeedTitle = null;
-//        mFeedLink = null;
-//        mFeedDescription = null;
-//
-//        // RSS Urls
-//        urlLink = getResources().getString(R.string.avisos_de_agua_y_suministros);
-//        }
-//
-//        @Override
-//        protected Boolean doInBackground(Void... voids) {
-//        if (TextUtils.isEmpty(urlLink))
-//            return false;
-//
-//        try {
-//            Log.e(TAG, "Do in Background" );
-//            if(!urlLink.startsWith("http://") && !urlLink.startsWith("https://"))
-//                urlLink = "http://" + urlLink;
-//
-//            URL url = new URL(urlLink);
-//            InputStream inputStream = url.openConnection().getInputStream();
-//            mFeedModelList = RssDownloadHelper.parseFeed(inputStream); // Parse the feed
-//            return true;
-//        } catch (IOException e) {
-//            Log.e(TAG, "Error", e);
-//        } catch (XmlPullParserException e) {
-//            Log.e(TAG, "Error", e);
-//        }
-//            return false;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Boolean success) {
-//        mSwipeLayout.setRefreshing(false);
-//
-//            if (success) {
-//                // Fill RecyclerView
-//                mRecyclerView.setAdapter(new RSSFeedListAdapter(mFeedModelList));
-//            } else {
-//                Toast.makeText(MainActivity.this,
-//                        "Enter a valid Rss feed url",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        }
-//    }
+
 }

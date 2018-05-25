@@ -9,13 +9,21 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class RssDownloadHelper {
 
     public static List<RSSFeedModel> parseFeed(InputStream inputStream) throws XmlPullParserException, IOException {
+        long guid = 0;
         String title = null;
+        String pubDate = null;
         String link = null;
         String description = null;
         boolean isItem = false;
@@ -48,7 +56,7 @@ public class RssDownloadHelper {
                     }
                 }
 
-                Log.d("MainActivity", "Parsing name ==> " + name);
+                //Log.d("MainActivity", "Parsing name ==> " + name);
                 String result = "";
                 if (xmlPullParser.next() == XmlPullParser.TEXT) {
                     result = xmlPullParser.getText();
@@ -57,7 +65,20 @@ public class RssDownloadHelper {
 
                 if (name.equalsIgnoreCase("title")) {
                     title = result;
-                    Log.d("TITLE", "TITLE ==> " + title);
+                    //Log.d("TITLE", "TITLE ==> " + title);
+                }else if(name.equalsIgnoreCase("guid")){
+                    try{
+                        guid = Long.valueOf(result);
+                    }catch (NumberFormatException e) {
+                        Log.d("Conversion error", e.getMessage().toString());
+                    }
+                }else if(name.equalsIgnoreCase("pubDate")){
+                    try{
+                        pubDate = result;
+                        //Log.d("PUBDATERSS HELPER", pubDate + "");
+                    }catch (Exception e) {
+                        Log.d("Conversion error time", e.getMessage().toString());
+                    }
                 } else if (name.equalsIgnoreCase("link")) {
                     link = result;
                 } else if (name.equalsIgnoreCase("description")) {
@@ -66,14 +87,9 @@ public class RssDownloadHelper {
 
                 if (title != null && link != null && description != null) {
                     if(isItem) {
-                        RSSFeedModel item = new RSSFeedModel(title, link, description);
+                        RSSFeedModel item = new RSSFeedModel(guid, title, pubDate, link, description);
                         items.add(item);
                     }
-//                    else {
-//                        mFeedTitle = title;
-//                        mFeedLink = link;
-//                        mFeedDescription = description;
-//                    }
 
                     title = null;
                     link = null;
@@ -87,4 +103,14 @@ public class RssDownloadHelper {
             inputStream.close();
         }
     }
+
+//    private static Calendar getDataTime(String date) throws ParseException {
+//        Calendar pubDate = Calendar.getInstance();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+//        pubDate.setTime(sdf.parse(date));
+//        return pubDate;
+//    }
+
 }
+
+

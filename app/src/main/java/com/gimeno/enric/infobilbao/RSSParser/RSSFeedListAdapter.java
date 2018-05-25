@@ -14,6 +14,9 @@ public class RSSFeedListAdapter extends RecyclerView.Adapter<RSSFeedListAdapter.
 
     private List<RSSFeedModel> mRssFeedModels;
 
+    public RSSFeedListAdapter(List<RSSFeedModel>[] alertList) {
+    }
+
     public static class FeedModelViewHolder extends RecyclerView.ViewHolder {
         private View rssFeedView;
 
