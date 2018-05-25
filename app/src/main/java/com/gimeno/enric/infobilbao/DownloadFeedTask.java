@@ -30,7 +30,7 @@ public class DownloadFeedTask extends AsyncTask<String, Void, String> {
     private RecyclerView recyclerView;
     Cursor cursor;
     private List<RSSFeedModel> mFeedModelList;
-    
+
     // Ruta de la URI BD
     private static Uri uri = Uri.parse("content://es.infobilbao.alerts/alerts");
 
