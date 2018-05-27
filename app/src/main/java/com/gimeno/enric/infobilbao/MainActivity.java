@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        //mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
         new DownloadFeedTask(this,this, mRecyclerView).execute(getResources().getString(R.string.avisos_de_agua_y_suministros));
 
@@ -55,24 +55,6 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
 
     @Override
     public void downloadComplete() {
-    }
-    private List<RSSFeedModel> getListItemData(Cursor cursor) {
-        List<RSSFeedModel> listViewItems = new ArrayList<RSSFeedModel>();
-
-        if (cursor.moveToFirst()){
-            while(!cursor.isAfterLast()){
-                listViewItems.add( new RSSFeedModel(
-                        cursor.getLong(cursor.getColumnIndex("guid")),
-                        cursor.getString(cursor.getColumnIndex("title")),
-                        cursor.getString(cursor.getColumnIndex("pubdate")),
-                        cursor.getString(cursor.getColumnIndex("link")),
-                        cursor.getString(cursor.getColumnIndex("description"))
-                        ));
-                cursor.moveToNext();
-            }
-        cursor.close();
-        }
-        return  listViewItems;
     }
 
 

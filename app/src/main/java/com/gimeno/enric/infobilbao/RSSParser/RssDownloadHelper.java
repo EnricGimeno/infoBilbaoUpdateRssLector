@@ -4,6 +4,7 @@ package com.gimeno.enric.infobilbao.RSSParser;
 import android.util.Log;
 import android.util.Xml;
 
+import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -56,7 +57,7 @@ public class RssDownloadHelper {
                     }
                 }
 
-                //Log.d("MainActivity", "Parsing name ==> " + name);
+                Log.d("MainActivity", "Parsing name ==> " + name);
                 String result = "";
                 if (xmlPullParser.next() == XmlPullParser.TEXT) {
                     result = xmlPullParser.getText();
@@ -65,7 +66,7 @@ public class RssDownloadHelper {
 
                 if (name.equalsIgnoreCase("title")) {
                     title = result;
-                    //Log.d("TITLE", "TITLE ==> " + title);
+                    Log.d("TITLE", "TITLE ==> " + title);
                 }else if(name.equalsIgnoreCase("guid")){
                     try{
                         guid = Long.valueOf(result);
@@ -75,26 +76,32 @@ public class RssDownloadHelper {
                 }else if(name.equalsIgnoreCase("pubDate")){
                     try{
                         pubDate = result;
-                        //Log.d("PUBDATERSS HELPER", pubDate + "");
+                        Log.d("PUBDATERSS HELPER", pubDate + "");
                     }catch (Exception e) {
                         Log.d("Conversion error time", e.getMessage().toString());
                     }
-                } else if (name.equalsIgnoreCase("link")) {
-                    link = result;
-                } else if (name.equalsIgnoreCase("description")) {
+                }else if (name.equalsIgnoreCase("description")) {
+                    //description = Jsoup.parse(result).text();
+                    Log.d("DESCRIPTION", "DESCRIPTION ==> " + result);
                     description = result;
+                }else if (name.equalsIgnoreCase("link")) {
+                    link = result;
+
                 }
 
-                if (title != null && link != null && description != null) {
+                if (title != null && link != null && description != null && pubDate != null) {
                     if(isItem) {
                         RSSFeedModel item = new RSSFeedModel(guid, title, pubDate, link, description);
                         items.add(item);
                     }
+                    else{
+                        title = null;
+                        link = null;
+                        description = null;
+                        pubDate = null;
+                        isItem = false;
+                    }
 
-                    title = null;
-                    link = null;
-                    description = null;
-                    isItem = false;
                 }
             }
 
