@@ -81,9 +81,8 @@ public class RssDownloadHelper {
                         Log.d("Conversion error time", e.getMessage().toString());
                     }
                 }else if (name.equalsIgnoreCase("description")) {
-                    //description = Jsoup.parse(result).text();
-                    Log.d("DESCRIPTION", "DESCRIPTION ==> " + result);
-                    description = result;
+                    description = Jsoup.parse(result).text();
+                    //description = result;
                 }else if (name.equalsIgnoreCase("link")) {
                     link = result;
 

@@ -1,12 +1,15 @@
 package com.gimeno.enric.infobilbao;
 
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -44,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
         new DownloadFeedTask(this,this, mRecyclerView).execute(getResources().getString(R.string.avisos_de_agua_y_suministros));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),LinearLayoutManager.VERTICAL);
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider_list_view));
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
+
 
 //        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
