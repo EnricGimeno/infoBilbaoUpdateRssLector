@@ -44,7 +44,18 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
 
-        new DownloadFeedTask(this,this, mRecyclerView).execute(getResources().getString(R.string.avisos_de_agua_y_suministros));
+        // Store all the url in a list
+        int stringRes[] = {R.string.avisos_de_agua_y_suministros,  R.string.avisos_de_temas_varios, R.string.avisos_de_trafico_y_transportes};
+        List<String> myUrls = new ArrayList<String>();
+        for (int id : stringRes){
+            String url = getResources().getString(id);
+            myUrls.add(url);
+        }
+        for (String url:myUrls) {
+            //new DownloadFeedTask(this,this, mRecyclerView).execute(url);
+        }
+
+        new DownloadFeedTask(this,this, mRecyclerView).execute(getResources().getString(R.string.avisos_de_temas_varios));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),LinearLayoutManager.VERTICAL);

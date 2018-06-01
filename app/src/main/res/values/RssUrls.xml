@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="avisos_de_agua_y_suministros">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos&amp;idSec=3000014008"</string>
+
+    <!--Avisos de TODO BILBAO-->
     <string name="avisos_de_bilbao">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075232&amp;pagename=Bilbaonet%2FPage%2FBIO_suscripcionRSS&amp;tipoSus=Avisos"</string>
+
     <string name="avisos_de_temas_varios">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos&amp;idSec=3000014022"</string>
     <string name="avisos_de_trafico_y_transportes">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos&amp;idSec=3000003828"</string>
     <string name="avisos_del_distrito_1_deusto">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000045075&amp;pagename=Bilbaonet%2FPage%2FBIO_suscripcionRSS&amp;tipoSus=Avisos"</string>
