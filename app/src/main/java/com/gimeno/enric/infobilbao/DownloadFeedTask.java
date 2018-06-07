@@ -12,14 +12,17 @@ import android.util.Log;
 import com.gimeno.enric.infobilbao.RSSParser.RSSFeedListAdapter;
 import com.gimeno.enric.infobilbao.RSSParser.RSSFeedModel;
 import com.gimeno.enric.infobilbao.RSSParser.RssDownloadHelper;
+import com.gimeno.enric.infobilbao.db.BilbaoFeedsDB;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
@@ -30,6 +33,7 @@ public class DownloadFeedTask extends AsyncTask<String, Void, String> {
     private RecyclerView recyclerView;
     Cursor cursor;
     private List<RSSFeedModel> mFeedModelList;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
     // Ruta de la URI BD
     private static Uri uri = Uri.parse("content://es.infobilbao.alerts/alerts");
@@ -82,7 +86,9 @@ public class DownloadFeedTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        cursor = context.getContentResolver().query(uri, null, null, null,null);
+        // DEFINE THE ORDER OF THE QUERY
+        String sortOrder = BilbaoFeedsDB.Alerts.CAMPO_PUB_DATE;
+        cursor = context.getContentResolver().query(uri, null, null, null,  sortOrder + " DESC");
         mFeedModelList = getListItemData(cursor);
         recyclerView.setAdapter(new RSSFeedListAdapter(mFeedModelList));
     }

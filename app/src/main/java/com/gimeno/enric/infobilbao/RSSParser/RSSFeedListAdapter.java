@@ -43,6 +43,8 @@ public class RSSFeedListAdapter extends RecyclerView.Adapter<RSSFeedListAdapter.
         final RSSFeedModel rssFeedModel = mRssFeedModels.get(position);
         ((TextView) holder.rssFeedView.findViewById(R.id.titleText)).setText(rssFeedModel.title);
         ((TextView) holder.rssFeedView.findViewById(R.id.descriptionText)).setText(rssFeedModel.description);
+        ((TextView) holder.rssFeedView.findViewById(R.id.pubDateText)).setText(rssFeedModel.pubDate);
+
     }
 
     @Override

@@ -1,31 +1,17 @@
 package com.gimeno.enric.infobilbao;
 
 
-import android.content.Context;
-import android.database.Cursor;
+
 import android.net.Uri;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.TextView;
+
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
-import com.gimeno.enric.infobilbao.RSSParser.RSSFeedListAdapter;
-import com.gimeno.enric.infobilbao.RSSParser.RSSFeedModel;
-import com.gimeno.enric.infobilbao.RSSParser.RssDownloadHelper;
-
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 

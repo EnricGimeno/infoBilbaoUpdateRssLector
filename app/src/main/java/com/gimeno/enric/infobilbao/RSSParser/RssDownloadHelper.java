@@ -3,21 +3,14 @@ package com.gimeno.enric.infobilbao.RSSParser;
 
 import android.util.Log;
 import android.util.Xml;
-
 import org.jsoup.Jsoup;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigInteger;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 public class RssDownloadHelper {
 
@@ -76,6 +69,7 @@ public class RssDownloadHelper {
                 }else if(name.equalsIgnoreCase("pubDate")){
                     try{
                         pubDate = result;
+                        //pubDate = getDataTime(result);
                         Log.d("PUBDATERSS HELPER", pubDate + "");
                     }catch (Exception e) {
                         Log.d("Conversion error time", e.getMessage().toString());
@@ -109,13 +103,6 @@ public class RssDownloadHelper {
             inputStream.close();
         }
     }
-
-//    private static Calendar getDataTime(String date) throws ParseException {
-//        Calendar pubDate = Calendar.getInstance();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-//        pubDate.setTime(sdf.parse(date));
-//        return pubDate;
-//    }
 
 }
 

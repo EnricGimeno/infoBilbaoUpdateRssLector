@@ -32,4 +32,14 @@
         android:text="Description"
         android:textSize="16dp"
         android:layout_below="@+id/titleText"/>
+
+    <TextView
+        android:id="@+id/pubDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="8dp"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:layout_below="@+id/descriptionText"/>
 </LinearLayout>

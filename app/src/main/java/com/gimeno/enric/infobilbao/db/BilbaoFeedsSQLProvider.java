@@ -21,7 +21,7 @@ public class BilbaoFeedsSQLProvider extends SQLiteOpenHelper {
                 BilbaoFeedsDB.Alerts._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 BilbaoFeedsDB.Alerts.CAMPO_GUID + " INTEGER," +
                 BilbaoFeedsDB.Alerts.CAMPO_TITLE + " TEXT," +
-                BilbaoFeedsDB.Alerts.CAMPO_PUB_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                BilbaoFeedsDB.Alerts.CAMPO_PUB_DATE + " DATETIME DEFAULT CURRENT_DATE," +
                 BilbaoFeedsDB.Alerts.CAMPO_URL_LINK + " TEXT UNIQUE," +
                 BilbaoFeedsDB.Alerts.CAMPO_DESCRIPTION + " TEXT" +
                 ")"
