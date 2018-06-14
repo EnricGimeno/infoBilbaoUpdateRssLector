@@ -3,7 +3,7 @@
     <string name="salir">Exit</string>
     <string name="settings">Settings</string>
 
-    <!-- Language Preference -->
+    <!-- Language settings -->
     <string name="language">Language</string>
     <string name="languageTitle">LANGUAGE</string>
     <string name="pref_skyn_title">Appearance</string>
@@ -20,6 +20,29 @@
     <string-array name="pref_idioma_entries">
         <item>English</item>
         <item>Spanish</item>
+    </string-array>
+
+    <!--Notifications settings-->
+    <string name="notificationsTitle">NOTIFICATIONS</string>
+    <string name="pref_notifications_title">Notifications</string>
+    <string name="pref_notifications_summary">Activate notifications</string>
+
+    <!--Alerts settings-->
+    <string name="alertsTitle">ALERTS</string>
+    <string name="pref_alerts_title">Choose alerts</string>
+    <string name="pref_alerts_summary">Choose the alerts to show</string>
+    <string name="pref_alerts_dialogtitle">Choose the alerts:</string>
+
+    <string-array name="pref_alerts_entryvalues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="pref_alerts_entries">
+        <item>Avisos de temas varios</item>
+        <item>Avisos de trafico y transportes</item>
+        <item>Avisos del distrito 1 deusto</item>
     </string-array>
 
 </resources>

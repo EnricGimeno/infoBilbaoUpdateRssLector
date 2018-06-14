@@ -5,9 +5,6 @@
         android:title = "@string/languageTitle"
         android:key="pref_language_category">
 
-        <Preference
-            android:layout="@layout/settings_divider"/>
-
         <ListPreference
             android:key="pref_idiom"
             android:title="@string/pref_idioma_title"
@@ -15,8 +12,42 @@
             android:entries="@array/pref_idioma_entries"
             android:entryValues="@array/pref_idioma_entryvalues"
             android:dialogTitle="@string/pref_idioma_dialogtitle"
-            android:defaultValue="en"
-            />
-
+            android:defaultValue="en" />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/divider_settings">
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/notificationsTitle"
+        android:key="pref_key_notification">
+        <CheckBoxPreference
+            android:key="pref_key_auto_delete"
+            android:summary="@string/pref_notifications_summary"
+            android:title="@string/pref_notifications_title"
+            android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="pref_key_auto_delete2"
+            android:summary="@string/pref_notifications_summary"
+            android:title="@string/pref_notifications_title"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/divider_settings">
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/alertsTitle"
+        android:key="pref_key_storage_settings">
+        <MultiSelectListPreference
+            android:key="pref_alert"
+            android:title="@string/pref_alerts_title"
+            android:summary="@string/pref_alerts_summary"
+            android:entries="@array/pref_alerts_entries"
+            android:entryValues="@array/pref_alerts_entryvalues"/>
+    </PreferenceCategory>
+
 </PreferenceScreen>
