@@ -4,6 +4,7 @@
 
     <!--Avisos de TODO BILBAO-->
     <string name="avisos_de_bilbao">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075232&amp;pagename=Bilbaonet%2FPage%2FBIO_suscripcionRSS&amp;tipoSus=Avisos"</string>
+    <string name="noticias_de_bilbao">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet%2FPage%2FBIO_suscripcionRSS&amp;tipoSus=Noticias"</string>
 
     <string name="avisos_de_temas_varios">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos&amp;idSec=3000014022"</string>
     <string name="avisos_de_trafico_y_transportes">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos&amp;idSec=3000003828"</string>
@@ -15,7 +16,7 @@
     <string name="avisos_del_distrito_6_abando">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000045027&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos"</string>
     <string name="avisos_del_distrito_7_rekalde">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000045123&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos"</string>
     <string name="avisos_del_distrito_8_basurto_zorroza">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000045043&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Avisos"</string>
-    <string name="noticias_de_bilbao">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet%2FPage%2FBIO_suscripcionRSS&amp;tipoSus=Noticias"</string>
+
     <string name="noticias_de_temas_de_aparcamientos">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Noticias&amp;idSec=3000014050"</string>
     <string name="noticias_de_temas_de_deporte">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Noticias&amp;idSec=3000014162"</string>
     <string name="noticias_de_temas_de_economia_y_hacienda">"http://www.bilbao.eus/cs/Satellite?language=es&amp;pageid=3000075248&amp;pagename=Bilbaonet/Page/BIO_suscripcionRSS&amp;tipoSus=Noticias&amp;idSec=3000014106"</string>

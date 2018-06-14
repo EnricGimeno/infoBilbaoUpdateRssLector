@@ -37,12 +37,82 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
     </string-array>
 
     <string-array name="pref_alerts_entries">
+        <item>Todo Bilbao</item>
+        <item>Avisos de agua y suministros</item>
         <item>Avisos de temas varios</item>
         <item>Avisos de trafico y transportes</item>
         <item>Avisos del distrito 1 deusto</item>
+        <item>Avisos del distrito 2 uribarri</item>
+        <item>Avisos del distrito 3 otxarkoaga txurdinaga</item>
+        <item>Avisos del distrito 4 begoña</item>
+        <item>Avisos del distrito 5 ibaiondo</item>
+        <item>Avisos del distrito 6 abando</item>
+        <item>Avisos del distrito 7 rekalde</item>
+        <item>Avisos del distrito 8 basurto zorroza</item>
+        <item>Noticias de temas de aparcamientos</item>
+        <item>Noticias de temas de deporte</item>
+        <item>Noticias de temas de economia y hacienda</item>
+        <item>Noticias de temas de educacion</item>
+        <item>Noticias de temas de empleo</item>
+        <item>Noticias de temas de infancia</item>
+        <item>Noticias de temas de juventud</item>
+        <item>Noticias de temas de medio ambiente</item>
+        <item>Noticias de temas de obras y servicios</item>
+        <item>noticias de temas de ocio y cultura</item>
+        <item>Noticias de temas de recursos humanos</item>
+        <item>Noticias de temas de salud</item>
+        <item>Noticias de temas de seguridad</item>
+        <item>Noticias de temas de trafico y transportes</item>
+        <item>Noticias de temas de turismo</item>
+        <item>Noticias de temas de urbanismo y vivienda</item>
+        <item>Noticias de temas de temas sociales</item>
+        <item>Noticias de ultima hora bilbobu</item>
+        <item>Noticias del distrito 1 deusto</item>
+        <item>Noticias del distrito 2 uribarri"</item>
+        <item>Noticias del distrito 3 otxarkoaga txurdinaga</item>
+        <item>Noticias del distrito 4 begoña</item>
+        <item>Noticias del distrito 5 ibaiondo</item>
+        <item>Noticias del distrito 6 abando</item>
+        <item>Noticias del distrito 7 rekalde</item>
+        <item>Noticias del distrito 8 basurto zorroza</item>
     </string-array>
+
 
 </resources>
