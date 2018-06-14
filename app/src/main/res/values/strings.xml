@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">infoBilbao</string>
+    <string name="salir">Exit</string>
+    <string name="settings">Settings</string>
+
+    <!-- Language Preference -->
+    <string name="language">Language</string>
+    <string name="languageTitle">LANGUAGE</string>
+    <string name="pref_skyn_title">Appearance</string>
+    <string name="pref_idioma_title">Language</string>
+    <string name="pref_idioma_summary">Choose the language</string>
+    <string name="pref_idioma_dialogtitle">Choose language:</string>
+    <string name="configuracion">Settings</string>
+
+    <string-array name="pref_idioma_entryvalues">
+        <item>en</item>
+        <item>es</item>
+    </string-array>
+
+    <string-array name="pref_idioma_entries">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+
 </resources>

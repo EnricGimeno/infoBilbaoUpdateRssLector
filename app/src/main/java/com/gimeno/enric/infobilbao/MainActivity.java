@@ -2,6 +2,7 @@ package com.gimeno.enric.infobilbao;
 
 
 
+import android.content.Intent;
 import android.net.Uri;
 
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeLayout;
+    private static final int RESULT_SETTINGS = 1;
 
     private static Uri uri = Uri.parse("content://es.infobilbao.alerts/alerts/*");
 
@@ -56,6 +61,29 @@ public class MainActivity extends AppCompatActivity implements DownloadCompleteL
 //            }
 //        });
     }
+
+    //MENU
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_preferences:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivityForResult(i, RESULT_SETTINGS);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     @Override
     public void downloadComplete() {
