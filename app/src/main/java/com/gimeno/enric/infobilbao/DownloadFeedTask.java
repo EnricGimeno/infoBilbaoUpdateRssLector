@@ -26,14 +26,11 @@ import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
-public class DownloadFeedTask extends AsyncTask<String, Void, String> {
+public class DownloadFeedTask extends AsyncTask<URL, Void, String> {
 
     DownloadCompleteListener mDownloadCompleteListener;
     Context context;
     private RecyclerView recyclerView;
-    Cursor cursor;
-    private List<RSSFeedModel> mFeedModelList;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
     // Ruta de la URI BD
     private static Uri uri = Uri.parse("content://es.infobilbao.alerts/alerts");
@@ -43,11 +40,13 @@ public class DownloadFeedTask extends AsyncTask<String, Void, String> {
         this.context = context;
         this.recyclerView = mRecyclerView;
     }
-
+    // https://developer.android.com/reference/android/os/AsyncTask
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(URL... urls) {
         try {
-            downloadData(params[0]);
+            for(URL url: urls){
+                downloadData(url.toString());
+            }
             return "OK";
         }catch (IOException e) {
             e.printStackTrace();
@@ -62,12 +61,13 @@ public class DownloadFeedTask extends AsyncTask<String, Void, String> {
         try {
             if(!urlLink.startsWith("http://") && !urlLink.startsWith("https://"))
                 urlLink = "http://" + urlLink;
-
+            Log.i("URL DOWNLOAD", urlLink + "");
             URL url = new URL(urlLink);
             InputStream inputStream = url.openConnection().getInputStream();
             List<RSSFeedModel> parseList =  RssDownloadHelper.parseFeed(inputStream);// Parse the feed
             for (RSSFeedModel item: parseList) {
                 ContentValues values = new ContentValues();
+                Log.i("TITLE VALUES", item.title);
                 values.put("guid", item.guid + "");
                 values.put("title", item.title);
                 values.put("pubdate", item.pubDate);
@@ -80,36 +80,11 @@ public class DownloadFeedTask extends AsyncTask<String, Void, String> {
         } catch (XmlPullParserException e) {
             Log.e(TAG, "Error", e);
         }
-
-        mDownloadCompleteListener.downloadComplete();
     }
 
     @Override
     protected void onPostExecute(String s) {
-        // DEFINE THE ORDER OF THE QUERY
-        String sortOrder = BilbaoFeedsDB.Alerts.CAMPO_PUB_DATE;
-        cursor = context.getContentResolver().query(uri, null, null, null,  sortOrder + " DESC");
-        mFeedModelList = getListItemData(cursor);
-        recyclerView.setAdapter(new RSSFeedListAdapter(mFeedModelList));
-    }
-
-    private List<RSSFeedModel> getListItemData(Cursor cursor) {
-        List<RSSFeedModel> listViewItems = new ArrayList<RSSFeedModel>();
-
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                listViewItems.add(new RSSFeedModel(
-                        cursor.getLong(cursor.getColumnIndex("guid")),
-                        cursor.getString(cursor.getColumnIndex("title")),
-                        cursor.getString(cursor.getColumnIndex("pubdate")),
-                        cursor.getString(cursor.getColumnIndex("link")),
-                        cursor.getString(cursor.getColumnIndex("description"))
-                ));
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-        return listViewItems;
+        mDownloadCompleteListener.downloadComplete();
 
     }
 }

@@ -23,12 +23,7 @@
         android:title="@string/notificationsTitle"
         android:key="pref_key_notification">
         <CheckBoxPreference
-            android:key="pref_key_auto_delete"
-            android:summary="@string/pref_notifications_summary"
-            android:title="@string/pref_notifications_title"
-            android:defaultValue="false" />
-        <CheckBoxPreference
-            android:key="pref_key_auto_delete2"
+            android:key="pref_key_check_notification"
             android:summary="@string/pref_notifications_summary"
             android:title="@string/pref_notifications_title"
             android:defaultValue="false" />

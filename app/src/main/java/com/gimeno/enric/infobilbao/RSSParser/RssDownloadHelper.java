@@ -34,16 +34,13 @@ public class RssDownloadHelper {
         parser.require(XmlPullParser.START_TAG, ns, "channel");
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
-                Log.d("START TAG", "START TAG");
                 continue;
             }
             String name = parser.getName();
-            Log.d("NAME", name);
             // Starts by looking for the entry tag
             if (name.equals("item")) {
                 items.add(readItem(parser));
             } else {
-                Log.d("SKIP", "SKIP");
                 skip(parser);
             }
         }
