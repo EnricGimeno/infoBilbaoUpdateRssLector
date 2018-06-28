@@ -3,6 +3,13 @@
     <string name="salir">Exit</string>
     <string name="settings">Settings</string>
 
+    <!--Dialogo Alerta Internet-->
+    <string name="titleAlert">No Internet Connection</string>
+    <string name="messageAlert">It looks like your internet connection is off. Please turn it on and try again</string>
+
+    <!--Barra de progresso-->
+    <string name="messageProgressDialog">Please wait...</string>
+
     <!-- Language settings -->
     <string name="language">Language</string>
     <string name="languageTitle">LANGUAGE</string>

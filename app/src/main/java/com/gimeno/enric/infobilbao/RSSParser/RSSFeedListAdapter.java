@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.gimeno.enric.infobilbao.ItemClickListener;
+import com.gimeno.enric.infobilbao.OnItemClickListener;
 import com.gimeno.enric.infobilbao.R;
 
 import java.util.List;
@@ -13,20 +16,10 @@ import java.util.List;
 public class RSSFeedListAdapter extends RecyclerView.Adapter<RSSFeedListAdapter.FeedModelViewHolder> {
 
     private List<RSSFeedModel> mRssFeedModels;
-
-    public RSSFeedListAdapter(List<RSSFeedModel>[] alertList) {
-    }
-
-    public static class FeedModelViewHolder extends RecyclerView.ViewHolder {
-        private View rssFeedView;
-
-        public FeedModelViewHolder(View v) {
-            super(v);
-            rssFeedView = v;
-        }
-    }
+    private ItemClickListener clickListener;
 
     public RSSFeedListAdapter(List<RSSFeedModel> rssFeedModels) {
+
         mRssFeedModels = rssFeedModels;
     }
 
@@ -50,6 +43,27 @@ public class RSSFeedListAdapter extends RecyclerView.Adapter<RSSFeedListAdapter.
     @Override
     public int getItemCount() {
         return mRssFeedModels.size();
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
+    }
+
+    public class FeedModelViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private View rssFeedView;
+
+        public FeedModelViewHolder(View v) {
+            super(v);
+            rssFeedView = v;
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (clickListener != null) {
+                clickListener.onClick(view, getAdapterPosition());
+            }
+        }
     }
 
 }
